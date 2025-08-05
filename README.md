@@ -1,0 +1,2 @@
+# skyaitrainer
+a aiTrainer program
