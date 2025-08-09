@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center"height="100px"width="100px">
    <img src="./sat.png"></img>
 </div>
 
@@ -36,34 +36,23 @@
 ### 2.安装需要的库
 
 ```
-
 pip install torch torchvision torchaudio
-
-
 ```
 
 ```
-
 pip install scikit-learn
-
 ```
 
 ```
-
 pip install numpy
-
 ```
 
 ```
-
 pip install requests
-
 ```
 
 ```
-
 pip install beautifulsoup4
-
 ```
 
 ### 3.下载代码，在 skyaitrainer 文件夹里找到skyaitrainer..py程序运行即可
