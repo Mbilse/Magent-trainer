@@ -1,5 +1,5 @@
-<div align="center" height="50px" width="50px">
-   <img src="./sat.png"></img>
+<div align="center">
+   <img src="./sat.png"height="500px"width="500px"></img>
 </div>
 
 <div align="center">
