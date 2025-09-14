@@ -3,15 +3,15 @@
 </div>
 
 <div align="center">
-   <h1>Sky AI Trainer</h1>
-   <p>A simple AI training program to build your own AI models 🚀</p>
+   <h1>Magent Trainer</h1>
+   <p>build your own AI models 🧸</p>
 </div>
 
-[简体中文](./README.md) | English
+[中文简体](./README.md) | English
 
 ## Features
 
-✓ Train AI models (Core functionality)
+✓ Train AI models 
 
 ✓ Retraining
 
@@ -19,16 +19,17 @@
 
 ✓ Dataset training
 
-✓ Online training (somewhat limited)
+✓ Online training 
 
-✓ Save models (This probably doesn't need to be listed)
+✓ Save models 
 
 ## Installation & Usage
 
 ### 1. Install Python
 
 ```
-Please handle this yourself
+apt update
+apt install python python3
 ```
 
 ### 2. Install required libraries
@@ -61,4 +62,4 @@ Welcome all experts to provide suggestions or contribute code!!!
 
 ## Open Source License
 
-MIT
+MIT Licence
