@@ -70,11 +70,11 @@ class UserFriendlyAITrainer:
                     return default
                 
                 if choices and user_input.lower() not in [c.lower() for c in choices]:
-                    raise ValueError(f"必须在{choices}中选择")
+                    raise ValueError(f"您必须在{choices}中选择")
                 
                 return input_type(user_input)
             except ValueError as e:
-                print(f"输入无效: {e}. 请重试")
+                print(f"错误：输入无效: {e}. 请重试")
 
     def load_from_database(self):
         """从数据库或文件加载训练数据"""
@@ -84,7 +84,7 @@ class UserFriendlyAITrainer:
         print("3. JSON文件")
         print("4. 手动输入")
         
-        choice = self.get_input("选择数据来源", choices=['1', '2', '3', '4'], default='4')
+        choice = self.get_input("请选择数据来源", choices=['1', '2', '3', '4'], default='4')
         
         if choice == '1':
             return self._load_from_sqlite()
@@ -102,13 +102,13 @@ class UserFriendlyAITrainer:
             print(f"在 {self.data_dir} 目录下未找到.db文件")
             return None
             
-        print("\n可用的数据库文件:")
+        print("\n现在可用的数据库文件:")
         for i, f in enumerate(db_files, 1):
             print(f"{i}. {f}")
         
         file_idx = self.get_input("选择数据库文件", int) - 1
         if file_idx < 0 or file_idx >= len(db_files):
-            print("无效选择")
+            print("这是一个无效选择")
             return None
             
         db_path = os.path.join(self.data_dir, db_files[file_idx])
@@ -118,20 +118,20 @@ class UserFriendlyAITrainer:
             
             # 获取所有表
             tables = cursor.execute("SELECT name FROM sqlite_master WHERE type='table';").fetchall()
-            print("\n可用的表:")
+            print("\n现在可用的表:")
             for i, (table,) in enumerate(tables, 1):
                 print(f"{i}. {table}")
             
             table_idx = self.get_input("选择表", int) - 1
             if table_idx < 0 or table_idx >= len(tables):
-                print("无效选择")
+                print("这是一个无效选择")
                 return None
                 
             table_name = tables[table_idx][0]
             
             # 获取列名
             columns = [col[1] for col in cursor.execute(f"PRAGMA table_info({table_name});").fetchall()]
-            print("\n可用的列:")
+            print("\n现在可用的列:")
             for i, col in enumerate(columns, 1):
                 print(f"{i}. {col}")
             
@@ -143,7 +143,7 @@ class UserFriendlyAITrainer:
             data = cursor.execute(f"SELECT {pattern_col}, {response_col} FROM {table_name};").fetchall()
             
             if not data:
-                print("表中没有数据")
+                print("此表中没有数据")
                 return None
                 
             # 转换为字典
@@ -155,7 +155,7 @@ class UserFriendlyAITrainer:
             return patterns if patterns else None
             
         except Exception as e:
-            print(f"数据库错误: {e}")
+            print(f"来自数据库错误: {e}")
             return None
         finally:
             conn.close()
@@ -182,7 +182,7 @@ class UserFriendlyAITrainer:
                 reader = csv.reader(f)
                 headers = next(reader)
                 
-                print("\n可用的列:")
+                print("\n现在可用的列:")
                 for i, header in enumerate(headers, 1):
                     print(f"{i}. {header}")
                 
@@ -217,7 +217,7 @@ class UserFriendlyAITrainer:
         
         file_idx = self.get_input("选择JSON文件", int) - 1
         if file_idx < 0 or file_idx >= len(json_files):
-            print("无效选择")
+            print("这是一个无效选择")
             return None
             
         json_path = os.path.join(self.data_dir, json_files[file_idx])
@@ -371,8 +371,8 @@ class UserFriendlyAITrainer:
         # 训练参数配置
         print("\n配置训练参数(直接回车保持当前值):")
         self.epochs = self.get_input("训练轮数", int, self.epochs)
-        self.batch_size = self.get_input("批大小", int, self.batch_size)
-        self.lr = self.get_input("学习率", float, self.lr)
+        self.batch_size = self.get_input("此批大小", int, self.batch_size)
+        self.lr = self.get_input("AI学习率", float, self.lr)
         
         # 更新优化器学习率
         for param_group in self.optimizer.param_groups:
@@ -561,10 +561,10 @@ class UserFriendlyAITrainer:
             # 加载模型后重新准备数据
             self._prepare_training_data()
             
-            print(f"已从 {model_path} 加载模型")
+            print(f"已从 {model_path} 中加载模型")
             return True
         except Exception as e:
-            print(f"加载模型失败: {e}")
+            print(f"错误：加载模型失败: {e}")
             return False
 
     def web_search_train(self):
@@ -683,12 +683,12 @@ def main():
         elif choice == '5':
             trainer.predict()
         elif choice == '6':
-            print("抱歉，请手动退出AuA")
+            print("请输入Ctrl+C手动退出")
         elif choice == '7':
-            print("你不会以为真的有什么彩蛋吧?h h h!")
+            print("这里...没有...彩蛋...哦！")
             break
         else:
-            print("无效选择，请重新输入")
+            print("错误：无效选择，请重新输入")
 
 if __name__ == "__main__":
     main()
