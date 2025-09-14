@@ -56,7 +56,9 @@ pip install requests
 pip install beautifulsoup4
 ```
 
-### 3.下载代码，在 skyaitrainer 文件夹里找到skyaitrainer..py程序运行即可
+### 3.下载代码，在 ver/版本 文件夹里找到main.py程序运行即可
+版本：
+1.0
 
 ## 贡献
 
